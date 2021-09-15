@@ -1,7 +1,2 @@
-new hookkkkkk
-dfdsfdsfsdfsdf
-asffsdf
-dddfvvvvv
-haiii finally
-jjjj
-jksjaljdlksjkl
+first you have to build from jenkins if any changes in pipeline
+after that push from github repo
