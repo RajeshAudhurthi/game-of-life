@@ -11,8 +11,4 @@ node {
     // some block
     junit 'game-of-life/gameoflife-web/target/surefire-reports/*.xml'
 }
-    stage('Archive the artifacts') {
-    // some block
-    archive 'game-of-life/gameoflife-web/target/*.war'
-}
 }
