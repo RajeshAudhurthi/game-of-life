@@ -1,9 +1,11 @@
-node {
-    stage('scm from git') {
+properties([pipelineTriggers([githubPush()])])
+ 
+pipeline {
+stage('scm') {
     // some block
-    sh 'rm -rf game-of-life && git clone https://github.com/RajeshAudhurthi/game-of-life.git'
+    sh 'rm -rf game-of-life && git clone https://github.com/wakaleo/game-of-life.git'
 }
-    stage('build for maven') {
+    stage('build from maven') {
     // some block
     sh 'cd game-of-life && mvn package'
 }
@@ -11,4 +13,9 @@ node {
     // some block
     junit 'game-of-life/gameoflife-web/target/surefire-reports/*.xml'
 }
+    stage('Archive the artifacts') {
+    // some block
+    archive 'game-of-life/gameoflife-web/target/*.war'
+}
+
 }
