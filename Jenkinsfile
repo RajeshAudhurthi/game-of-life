@@ -14,6 +14,18 @@ pipeline {
                 sh 'cd game-of-life && mvn package'
             }
         }
-    
+        stage('Junit results') {
+            steps {
+                echo 'showing junit results'
+                junit 'game-of-life/gameoflife-web/target/surefire-reports/*.xml'
+            }
+        }
+        stage('Archive the artifacts') {
+            steps {
+                echo 'Archive the artifacts'
+                archive 'game-of-life/gameoflife-web/target/*.war'
+            }
+        }
     }
 }
+
