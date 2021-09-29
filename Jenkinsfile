@@ -1,14 +1,23 @@
 pipeline {
     agent any
     environment {
-        
-        IMAGE_REPO_NAME="golr"
+        AWS_ACCOUNT_ID="869250677914"
+        AWS_DEFAULT_REGION="us-east-1"
+        IMAGE_REPO_NAME="gol1"
         IMAGE_TAG="latest"
-        
+        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
    
     stages {
         
+        stage('Logging into AWS ECR') {
+            steps {
+                script {
+                sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+                }
+                 
+            }
+        }
         stage('Clone the repo') {
             steps {
                 echo 'clone the repo'
@@ -47,7 +56,15 @@ pipeline {
           }
         }
    
-    // Uploading Docker images into AWS ECR
+        // Uploading Docker images into AWS ECR
+        stage('Pushing to ECR') {
+            steps{  
+                script {
+                        sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
+                        sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+                }
+                }
+            }
    
     }
 }
