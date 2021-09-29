@@ -77,7 +77,13 @@ pipeline {
                         sh "docker push ${DOCKER_HUB_ID}/${IMAGE_REPO_NAME}:$IMAGE_TAG"
                 }
                 }
+        }
+        stage('docker deploy') {
+            steps {
+                ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: '-e DOCKER_TAG="${IMAGE_TAG}"', installation: 'ansible', inventory: 'docker-inventory.inv', playbook: 'docker-playbook.yml'   
             }
+        }
+
    
     }
 
