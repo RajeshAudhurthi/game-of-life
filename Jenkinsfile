@@ -26,6 +26,7 @@ pipeline {
         stage('Archive the artifacts') {
             steps {
                 echo 'Archive the artifacts'
+                sh "cd game-of-life"
                 archiveArtifacts artifacts: 'game-of-life/gameoflife-web/target/*.war', followSymlinks: false
                 
             }
