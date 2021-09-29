@@ -32,7 +32,9 @@ pipeline {
             steps {
                 echo 'Archive the artifacts'
                 archiveArtifacts artifacts: 'gameoflife-web/target/*.war', followSymlinks: false
-                
+                script {
+                    sh "cp gameoflife-web/target/*.war ."
+                }
             }
         }
   
