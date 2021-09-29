@@ -21,7 +21,7 @@
         state: present
     - name: Start the container
       docker_container:
-        name: hariapp
+        name: rajesh_server
         image: "raajesh404/gol1:{{DOCKER_TAG}}"
         state: started
         published_ports:
