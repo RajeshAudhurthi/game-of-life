@@ -91,10 +91,10 @@ pipeline {
                     sh "scp -o StrictHostKeyChecking=no deployment-gol.yml service-gol-np.yml ubuntu@34.234.90.127:/home/ubuntu/"
                     script{
                         try{
-                            sh "ssh ubuntu@34.234.90.127 kubectl apply -f ."
+                            sh "ssh ubuntu@34.234.90.127 sudo kubectl apply -f ."
                         }
                         catch(error){
-                            sh "ssh ubuntu@34.234.90.127 kubectl create -f ."
+                            sh "ssh ubuntu@34.234.90.127 sudo kubectl create -f ."
                         }
                     }
                 }
