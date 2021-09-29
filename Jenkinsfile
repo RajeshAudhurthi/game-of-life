@@ -70,8 +70,9 @@ pipeline {
             steps{  
                 script {
                         withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerhubPWD')]) {
+                            sh "docker login -u ${DOCKER_HUB_ID} -p ${dockerhubPWD}"
                     }
-                        sh "docker login -u ${DOCKER_HUB_ID} -p ${dockerhubPWD}"
+                        
                         sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${DOCKER_HUB_ID}/${IMAGE_REPO_NAME}:$IMAGE_TAG"
                         sh "docker push ${DOCKER_HUB_ID}/${IMAGE_REPO_NAME}:$IMAGE_TAG"
                 }
