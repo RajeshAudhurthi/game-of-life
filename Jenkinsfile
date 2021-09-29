@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-         
+        
         IMAGE_REPO_NAME="golr"
         IMAGE_TAG="latest"
         
@@ -26,7 +26,7 @@ pipeline {
         stage('Archive the artifacts') {
             steps {
                 echo 'Archive the artifacts'
-                archive "game-of-life/gameoflife-web/target/*.war"
+                archiveArtifacts artifacts: 'game-of-life/gameoflife-web/target/*.war', followSymlinks: false
                 
             }
         }
