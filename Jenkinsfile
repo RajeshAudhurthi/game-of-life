@@ -4,7 +4,7 @@ pipeline {
         AWS_ACCOUNT_ID="869250677914"
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="gol1"
-        IMAGE_TAG="getVersion()"
+        IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
    
@@ -68,9 +68,4 @@ pipeline {
    
     }
 
-}
-
-def getVersion(){
-    def commitHash = sh label: '', returnStdout: true, script: 'git rev-parse --short HEAD'
-    return commitHash
 }
