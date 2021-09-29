@@ -84,6 +84,22 @@ pipeline {
                 ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: '-e DOCKER_TAG="${IMAGE_TAG}"', installation: 'ansible', inventory: 'docker-inventory.inv', playbook: 'docker-playbook.yml'   
             }
         }
+        stage('k8s deploy') {
+            steps {
+                sshagent(['kubeadm']) {
+                    // some block
+                    sh "scp -o StrictHostKeyChecking=no deployment-gol.yml service-gol-np.yml ubuntu@34.234.90.127:/home/ubuntu/"
+                    script{
+                        try{
+                            sh "ssh ubuntu@34.234.90.127 kubectl apply -f ."
+                        }
+                        catch{
+                            sh "ssh ubuntu@34.234.90.127 kubectl create -f ."
+                        }
+                    }
+                }
+            }
+        }
 
    
     }
