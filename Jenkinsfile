@@ -93,7 +93,7 @@ pipeline {
                         try{
                             sh "ssh ubuntu@34.234.90.127 kubectl apply -f ."
                         }
-                        catch{
+                        catch(error){
                             sh "ssh ubuntu@34.234.90.127 kubectl create -f ."
                         }
                     }
