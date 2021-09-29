@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
       - name: gol
-        image: raajesh404/gol1:latest5
+        image: 869250677914.dkr.ecr.us-east-1.amazonaws.com/gol1:latest5
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
