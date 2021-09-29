@@ -12,7 +12,7 @@ pipeline {
         stage('Clone the repo') {
             steps {
                 echo 'clone the repo'
-                sh "rm -rf game-of-life && git clone https://github.com/RajeshAudhurthi/game-of-life.git"
+                sh "rm -rf game-of-life && git 'https://github.com/RajeshAudhurthi/game-of-life.git'"
                 
             }
         }
@@ -26,7 +26,6 @@ pipeline {
         stage('Archive the artifacts') {
             steps {
                 echo 'Archive the artifacts'
-                sh "cd game-of-life"
                 archiveArtifacts artifacts: 'game-of-life/gameoflife-web/target/*.war', followSymlinks: false
                 
             }
