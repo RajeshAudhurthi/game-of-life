@@ -12,14 +12,19 @@ pipeline {
         stage('Clone the repo') {
             steps {
                 echo 'clone the repo'
-                sh "rm -rf game-of-life && git 'https://github.com/RajeshAudhurthi/game-of-life.git'"
+                script {
+                    sh "rm -rf game-of-life"
+                }
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/RajeshAudhurthi/game-of-life.git']]])
                 
             }
         }
         stage('build from maven') {
             steps {
                 echo 'building war file using maven'
-                sh "mvn package"
+                script {
+                    sh "mvn package"
+                }
                 
             }
         }
