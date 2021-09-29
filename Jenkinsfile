@@ -31,7 +31,7 @@ pipeline {
         stage('Archive the artifacts') {
             steps {
                 echo 'Archive the artifacts'
-                archiveArtifacts artifacts: 'game-of-life/gameoflife-web/target/*.war', followSymlinks: false
+                archiveArtifacts artifacts: 'gameoflife-web/target/*.war', followSymlinks: false
                 
             }
         }
