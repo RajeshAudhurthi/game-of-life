@@ -1,5 +1,6 @@
 pipeline {
-    agent any
+    agent {
+        master {
     environment {
         AWS_ACCOUNT_ID="869250677914"
         AWS_DEFAULT_REGION="us-east-1"
@@ -10,6 +11,7 @@ pipeline {
     }
    
     stages {
+
         
         stage('Logging into AWS ECR') {
             steps {
@@ -85,6 +87,8 @@ pipeline {
         }
 
    
+    }
+    }
     }
 
     agent {
