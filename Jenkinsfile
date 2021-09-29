@@ -5,7 +5,7 @@ pipeline {
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="gol1"
         DOCKER_HUB_ID="raajesh404"
-        IMAGE_TAG="latest4"
+        IMAGE_TAG="latest5"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
    

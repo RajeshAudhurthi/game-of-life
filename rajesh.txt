@@ -1,4 +1,0 @@
-first you have to build from jenkins if any changes in pipeline
-after that push from github repo
-
-new commit
