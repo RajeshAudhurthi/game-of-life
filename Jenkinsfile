@@ -12,22 +12,22 @@ pipeline {
         stage('Clone the repo') {
             steps {
                 echo 'clone the repo'
-                sh 'rm -rf game-of-life && git clone https://github.com/RajeshAudhurthi/game-of-life.git'
+                sh "rm -rf game-of-life && git clone https://github.com/RajeshAudhurthi/game-of-life.git"
                 
             }
         }
         stage('build from maven') {
             steps {
                 echo 'building war file using maven'
-                sh 'mvn package'
+                sh "mvn package"
                 
             }
         }
         stage('Archive the artifacts') {
             steps {
                 echo 'Archive the artifacts'
-                archive 'game-of-life/gameoflife-web/target/*.war'
-                sh 'mvn package'
+                archive "game-of-life/gameoflife-web/target/*.war"
+                
             }
         }
   
