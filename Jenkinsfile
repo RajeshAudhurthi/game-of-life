@@ -87,4 +87,28 @@ pipeline {
    
     }
 
+    agent {
+        Kubernetes{
+            stage('Clone the repo') {
+                steps {
+                    echo 'clone the repo'
+                    script {
+                        sh "rm -rf game-of-life"
+                    }
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/RajeshAudhurthi/game-of-life.git']]])
+                    
+                }
+            }
+            stage('deploy-service') {
+                steps {
+                    echo 'deploy and service yml files applied'
+                    script {
+                        sh "rm -rf game-of-life"
+            
+                    }
+                    
+                }
+            }
+        }
+    }
 }
