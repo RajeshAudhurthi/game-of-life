@@ -89,7 +89,7 @@ pipeline {
                     // some block
                     
                     sh "scp -o StrictHostKeyChecking=no deployment-gol.yml service-gol-np.yml ubuntu@54.173.219.87:/home/ubuntu/"
-                    sh "ssh ubuntu@54.173.219.87 sudo apt install awscli -y && sudo kubectl create secret docker-registry regcred --docker-server=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com --docker-username=AWS --docker-password=$(aws ecr get-login-password)
+                    sh "ssh ubuntu@54.173.219.87 sudo apt install awscli -y && sudo kubectl create secret docker-registry regcred --docker-server = ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com --docker-username = AWS --docker-password = $(aws ecr get-login-password)
 && aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
                     script{
                         try{
