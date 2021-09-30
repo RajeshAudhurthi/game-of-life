@@ -5,7 +5,7 @@ pipeline {
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="gol1"
         DOCKER_HUB_ID="raajesh404"
-        IMAGE_TAG="latest7"
+        IMAGE_TAG="latest8"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
    
@@ -89,8 +89,6 @@ pipeline {
                     // some block
                     
                     sh "scp -o StrictHostKeyChecking=no deployment-gol.yml service-gol-np.yml ubuntu@54.173.219.87:/home/ubuntu/"
-                    sh "ssh ubuntu@54.173.219.87 sudo apt install awscli -y && sudo kubectl create secret docker-registry regcred --docker-server = ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com --docker-username = AWS --docker-password = $(aws ecr get-login-password)
-&& aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
                     script{
                         try{
                             sh "ssh ubuntu@54.173.219.87 sudo kubectl apply -f ."
